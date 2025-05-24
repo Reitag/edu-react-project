@@ -6,8 +6,8 @@ export const DishCounter = () => {
   return (
     <div>
       <span>{count} </span>
-      <button onClick={() => onDecrement()}>-</button>
-      <button onClick={() => onIncrement()}>+</button>
+      <button onClick={onDecrement}>-</button>
+      <button onClick={onIncrement}>+</button>
     </div>
   );
 };
