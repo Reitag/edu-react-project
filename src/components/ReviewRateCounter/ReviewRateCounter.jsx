@@ -1,4 +1,5 @@
-import { Counter } from "./Counter";
+import { Counter } from "../Counter/Counter";
+import styles from "./ReviewRateCounter.module.css";
 
 export const ReviewRateCounter = ({ rating, onChange }) => {
   const increment = () => {
@@ -10,6 +11,8 @@ export const ReviewRateCounter = ({ rating, onChange }) => {
   };
 
   return (
-    <Counter count={rating} onIncrement={increment} onDecrement={decrement} />
+    <div className={styles.rateWrapper}>
+      <Counter count={rating} onIncrement={increment} onDecrement={decrement} />
+    </div>
   );
 };

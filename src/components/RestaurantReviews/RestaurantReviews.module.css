@@ -1,0 +1,8 @@
+.reviewsList {
+  padding: 0;
+}
+
+.reviewsItem {
+  padding: 12px 0;
+  border-bottom: 2px solid #d7d7d7;
+}

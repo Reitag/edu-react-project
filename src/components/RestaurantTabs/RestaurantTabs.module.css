@@ -1,0 +1,32 @@
+.tabs {
+  margin: 0 auto;
+  max-width: 1390px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tabList {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tabButton {
+  padding: 10px 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.tabButton:hover {
+  background-color: #e0e0e0;
+}
+
+.tabButtonActive {
+  background-color: #4caf50;
+  color: white;
+}
