@@ -1,10 +1,14 @@
 import { useForm } from "../../hooks/useForm";
 import { ReviewRateCounter } from "../ReviewRateCounter/ReviewRateCounter";
+import { useUserContext } from "../../hooks/useUserContext";
 import styles from "./ReviewForm.module.css";
 
 export const ReviewForm = () => {
   const { form, onUserNameChange, onReviewChange, onRatingChange, clear } =
     useForm();
+
+  const { user } = useUserContext();
+  if (!user) return null;
 
   const { userName, review, rating } = form;
 

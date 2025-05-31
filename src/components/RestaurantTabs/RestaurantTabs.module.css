@@ -23,10 +23,10 @@
 }
 
 .tabButton:hover {
-  background-color: #e0e0e0;
+  background-color: var(--button-hover-color);
 }
 
 .tabButtonActive {
-  background-color: #4caf50;
+  background-color: var(--button-color);
   color: white;
 }
