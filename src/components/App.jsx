@@ -1,5 +1,5 @@
 import { Layout } from "./Layout";
-import { RestaurantTabs } from "./RestaurantTabs";
+import { RestaurantTabs } from "./RestaurantTabs/RestaurantTabs";
 
 export const App = () => {
   return (

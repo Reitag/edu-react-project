@@ -1,0 +1,14 @@
+.dishCounter {
+  margin: 8px 0;
+  border: 1px solid black;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.empty {
+  background-color: #f8d7da;
+}
+
+.filled {
+  background-color: #bfedca;
+}
