@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
 import { Context } from "../../hooks/useThemeContext";
-import { DEFAULT_THEME } from "../../themes/default";
-import { ALTERNATIVE_THEME } from "../../themes/alternative";
-
-const themes = {
-  default: DEFAULT_THEME,
-  alternative: ALTERNATIVE_THEME,
-};
+import "../../variables.css";
+import "./Theme.module.css";
 
 export const ThemeContext = ({ children }) => {
   const [theme, setTheme] = useState("default");
 
   useEffect(() => {
-    const root = document.documentElement;
-    const selectedTheme = themes[theme];
-
-    if (selectedTheme) {
-      for (const key in selectedTheme) {
-        root.style.setProperty(key, selectedTheme[key]);
-      }
-    }
+    document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
