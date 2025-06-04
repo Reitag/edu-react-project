@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { restaurants } from "../../../materials/mock";
+import { useSelector } from "react-redux";
+import {
+  selectRestaurantIds,
+  selectRestaurantById,
+} from "../../redux/entities/restaurants/slice";
+
 import { RestaurantCard } from "../RestaurantCard/RestaurantCard";
 import cn from "classnames";
 import styles from "./RestaurantTabs.module.css";
 
 export const RestaurantTabs = () => {
-  const [activeId, setActiveId] = useState(restaurants[0].id);
+  const restaurantIds = useSelector(selectRestaurantIds);
+  const restaurantsMap = useSelector((state) => state.restaurantSlice.entities);
 
-  const activeRestaurant = restaurants.find(
-    (restaurant) => restaurant.id === activeId
+  const [activeId, setActiveId] = useState(restaurantIds[0]);
+
+  const activeRestaurant = useSelector((state) =>
+    selectRestaurantById(state, activeId)
   );
 
   const handleTabs = (id) => {
@@ -20,24 +28,25 @@ export const RestaurantTabs = () => {
   return (
     <div className={styles.tabs}>
       <div className={styles.tabList}>
-        {restaurants.map(({ id, name }) => (
-          <button
-            key={id}
-            className={cn(styles.tabButton, {
-              [styles.tabButtonActive]: id === activeId,
-            })}
-            onClick={() => handleTabs(id)}
-          >
-            {name}
-          </button>
-        ))}
+        {restaurantIds.map((id) => {
+          const restaurant = restaurantsMap[id];
+          if (!restaurant) return null;
+
+          return (
+            <button
+              key={restaurant.id}
+              className={cn(styles.tabButton, {
+                [styles.tabButtonActive]: restaurant.id === activeId,
+              })}
+              onClick={() => handleTabs(restaurant.id)}
+            >
+              {restaurant.name}
+            </button>
+          );
+        })}
       </div>
       {activeRestaurant && (
-        <RestaurantCard
-          name={activeRestaurant.name}
-          menu={activeRestaurant.menu}
-          reviews={activeRestaurant.reviews}
-        />
+        <RestaurantCard restaurantId={activeRestaurant.id} />
       )}
     </div>
   );
