@@ -1,4 +1,5 @@
 import { useThemeContext } from "../../hooks/useThemeContext";
+import styles from "./Theme.module.css";
 
 export const ThemeSwitcher = () => {
   const ctx = useThemeContext();
@@ -6,8 +7,8 @@ export const ThemeSwitcher = () => {
 
   const { theme, toggleTheme } = ctx;
   return (
-    <button onClick={toggleTheme}>
+    <div onClick={toggleTheme} className={styles.button}>
       Switch to {theme === "default" ? "Alternative" : "Default"} Theme
-    </button>
+    </div>
   );
 };

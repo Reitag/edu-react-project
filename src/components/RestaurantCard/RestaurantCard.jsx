@@ -6,19 +6,19 @@ import { ReviewForm } from "../ReviewForm/ReviewForm";
 import styles from "./RestaurantCard.module.css";
 
 export const RestaurantCard = ({ restaurantId }) => {
-  const restaurant = useSelector((state) =>
-    selectRestaurantById(state, restaurantId)
+  const restaurant = useSelector(
+    (state) => selectRestaurantById(state, restaurantId) || {}
   );
 
   if (!restaurant) return null;
 
+  const { name, menu, reviews } = restaurant;
+
   return (
     <div className={styles.card}>
-      <h2>{restaurant.name}</h2>
-      <RestaurantMenu menuIds={restaurant.menu} />
-      {Boolean(restaurant.reviews.length) && (
-        <RestaurantReviews reviewIds={restaurant.reviews} />
-      )}
+      <h2>{name}</h2>
+      <RestaurantMenu menuIds={menu} />
+      {Boolean(reviews.length) && <RestaurantReviews reviewIds={reviews} />}
       <ReviewForm />
     </div>
   );
