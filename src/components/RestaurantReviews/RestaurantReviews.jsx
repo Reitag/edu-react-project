@@ -1,4 +1,4 @@
-import { Review } from "../Review/Review";
+import { Review } from "./Review";
 import styles from "./RestaurantReviews.module.css";
 
 export const RestaurantReviews = ({ reviewIds }) => {
