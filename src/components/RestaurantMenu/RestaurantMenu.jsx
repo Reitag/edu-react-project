@@ -1,15 +1,14 @@
-import { DishCounter } from "../DishCounter/DishCounter";
+import { Dish } from "../Dish/Dish";
 import styles from "./RestaurantMenu.module.css";
 
-export const RestaurantMenu = ({ menu }) => {
+export const RestaurantMenu = ({ menuIds }) => {
   return (
     <>
       <h3>Меню</h3>
       <ul className={styles.menuList}>
-        {menu.map((dish) => (
-          <li key={dish.id} className={styles.menuItem}>
-            {dish.name}
-            <DishCounter />
+        {menuIds.map((id) => (
+          <li key={id} className={styles.menuItem}>
+            <Dish id={id} />
           </li>
         ))}
       </ul>
