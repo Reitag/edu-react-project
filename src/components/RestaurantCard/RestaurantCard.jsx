@@ -1,25 +1,42 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
-import { RestaurantMenu } from "../RestaurantMenu/RestaurantMenu";
-import { RestaurantReviews } from "../RestaurantReviews/RestaurantReviews";
-import { ReviewForm } from "../ReviewForm/ReviewForm";
+import { NavLink, Outlet } from "react-router";
+import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
+import cn from "classnames";
 import styles from "./RestaurantCard.module.css";
 
-export const RestaurantCard = ({ restaurantId }) => {
-  const restaurant = useSelector(
-    (state) => selectRestaurantById(state, restaurantId) || {}
-  );
-
+export const RestaurantCard = () => {
+  const restaurant = useCurrentRestaurant();
   if (!restaurant) return null;
 
-  const { name, menu, reviews } = restaurant;
+  const { name } = restaurant;
 
   return (
-    <div className={styles.card}>
-      <h2>{name}</h2>
-      <RestaurantMenu menuIds={menu} />
-      {Boolean(reviews.length) && <RestaurantReviews reviewIds={reviews} />}
-      <ReviewForm />
-    </div>
+    <>
+      <h1>{name}</h1>
+      <div className={styles.sections}>
+        <NavLink
+          to="menu"
+          end
+          className={({ isActive }) =>
+            cn(styles.tabButton, {
+              [styles.tabButtonActive]: isActive,
+            })
+          }
+        >
+          Меню
+        </NavLink>
+
+        <NavLink
+          to="reviews"
+          className={({ isActive }) =>
+            cn(styles.tabButton, {
+              [styles.tabButtonActive]: isActive,
+            })
+          }
+        >
+          Отзывы
+        </NavLink>
+      </div>
+      <Outlet />
+    </>
   );
 };

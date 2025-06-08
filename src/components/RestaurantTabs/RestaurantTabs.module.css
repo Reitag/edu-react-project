@@ -1,12 +1,3 @@
-.tabs {
-  margin: 0 auto;
-  max-width: 1390px;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .tabList {
   display: flex;
   gap: 12px;

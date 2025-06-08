@@ -4,12 +4,19 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
+body {
   margin: 0;
   padding: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 h3 {

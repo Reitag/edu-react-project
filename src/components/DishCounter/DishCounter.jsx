@@ -4,8 +4,8 @@ import { useUserContext } from "../../hooks/useUserContext";
 import cn from "classnames";
 import styles from "./DishCounter.module.css";
 
-export const DishCounter = () => {
-  const [count, onIncrement, onDecrement] = useDishCounter();
+export const DishCounter = ({ dishId }) => {
+  const { value, onIncrement, onDecrement } = useDishCounter(dishId);
 
   const { user } = useUserContext();
   if (!user) return null;
@@ -13,12 +13,12 @@ export const DishCounter = () => {
   return (
     <div
       className={cn(styles.dishCounter, {
-        [styles.empty]: count === 0,
-        [styles.filled]: count > 0,
+        [styles.empty]: value === 0,
+        [styles.filled]: value > 0,
       })}
     >
       <Counter
-        count={count}
+        value={value}
         onIncrement={onIncrement}
         onDecrement={onDecrement}
       />

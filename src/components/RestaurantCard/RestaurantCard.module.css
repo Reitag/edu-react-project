@@ -1,4 +1,10 @@
-.card {
-  padding: 10px 0;
-  min-height: 200vh;
+.sections {
+  display: flex;
+  max-width: inherit;
+  gap: 10px;
+}
+
+.tabButtonActive {
+  font-weight: bold;
+  border-bottom: 2px solid orange;
 }

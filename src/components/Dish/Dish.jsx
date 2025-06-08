@@ -1,16 +1,26 @@
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router";
 import { selectDishById } from "../../redux/entities/dishes/slice";
 import { DishCounter } from "../DishCounter/DishCounter";
 
-export const Dish = ({ id }) => {
+export const Dish = ({ id, nameAsLink = false }) => {
   const dish = useSelector((state) => selectDishById(state, id));
 
   if (!dish) return null;
 
-  return (
+  const content1 = (
     <>
-      {dish.name}
-      <DishCounter />
+      <NavLink to={`/dish/${id}`}>{dish.name}</NavLink>
+      <DishCounter dishId={id} />
     </>
   );
+
+  const content2 = (
+    <>
+      {dish.name}
+      <DishCounter dishId={id} />
+    </>
+  );
+
+  return nameAsLink ? content1 : content2;
 };

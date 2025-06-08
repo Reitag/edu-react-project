@@ -1,14 +1,20 @@
+import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import { Dish } from "../Dish/Dish";
 import styles from "./RestaurantMenu.module.css";
 
-export const RestaurantMenu = ({ menuIds }) => {
+export const RestaurantMenu = () => {
+  const restaurant = useCurrentRestaurant();
+  if (!restaurant) return null;
+
+  const { menu } = restaurant;
+
   return (
     <>
       <h3>Меню</h3>
       <ul className={styles.menuList}>
-        {menuIds.map((id) => (
+        {menu.map((id) => (
           <li key={id} className={styles.menuItem}>
-            <Dish id={id} />
+            <Dish id={id} nameAsLink />
           </li>
         ))}
       </ul>
