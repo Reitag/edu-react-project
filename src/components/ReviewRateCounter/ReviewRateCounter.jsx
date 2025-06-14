@@ -12,7 +12,7 @@ export const ReviewRateCounter = ({ rating, onChange }) => {
 
   return (
     <div className={styles.rateWrapper}>
-      <Counter count={rating} onIncrement={increment} onDecrement={decrement} />
+      <Counter value={rating} onIncrement={increment} onDecrement={decrement} />
     </div>
   );
 };

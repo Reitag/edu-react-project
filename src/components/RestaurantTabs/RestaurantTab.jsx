@@ -1,28 +1,18 @@
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
-import cn from "classnames";
+import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
 import styles from "./RestaurantTabs.module.css";
 
-export const RestaurantTab = ({ id, activeId, setActiveId }) => {
-  const restaurant = useSelector((state) => selectRestaurantById(state, id));
+export const RestaurantTab = ({ restaurantId }) => {
+  const restaurant = useSelector((state) =>
+    selectRestaurantById(state, restaurantId)
+  );
 
   if (!restaurant) return null;
 
-  const handleTabs = (id) => {
-    if (id !== activeId) {
-      setActiveId(id);
-    }
-  };
-
   return (
-    <button
-      key={id}
-      className={cn(styles.tabButton, {
-        [styles.tabButtonActive]: id === activeId,
-      })}
-      onClick={() => handleTabs(id)}
-    >
+    <NavLinkWrapper to={restaurant.id} styles={styles}>
       {restaurant.name}
-    </button>
+    </NavLinkWrapper>
   );
 };

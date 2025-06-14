@@ -1,25 +1,26 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
-import { RestaurantMenu } from "../RestaurantMenu/RestaurantMenu";
-import { RestaurantReviews } from "../RestaurantReviews/RestaurantReviews";
-import { ReviewForm } from "../ReviewForm/ReviewForm";
+import { Outlet } from "react-router";
+import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
+import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import styles from "./RestaurantCard.module.css";
 
-export const RestaurantCard = ({ restaurantId }) => {
-  const restaurant = useSelector(
-    (state) => selectRestaurantById(state, restaurantId) || {}
-  );
-
+export const RestaurantCard = () => {
+  const restaurant = useCurrentRestaurant();
   if (!restaurant) return null;
 
-  const { name, menu, reviews } = restaurant;
+  const { name } = restaurant;
 
   return (
-    <div className={styles.card}>
-      <h2>{name}</h2>
-      <RestaurantMenu menuIds={menu} />
-      {Boolean(reviews.length) && <RestaurantReviews reviewIds={reviews} />}
-      <ReviewForm />
-    </div>
+    <>
+      <h1>{name}</h1>
+      <div className={styles.sections}>
+        <NavLinkWrapper to="menu" end styles={styles}>
+          Меню
+        </NavLinkWrapper>
+        <NavLinkWrapper to="reviews" styles={styles}>
+          Отзывы
+        </NavLinkWrapper>
+      </div>
+      <Outlet />
+    </>
   );
 };
