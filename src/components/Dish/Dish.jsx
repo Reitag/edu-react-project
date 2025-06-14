@@ -8,19 +8,14 @@ export const Dish = ({ id, nameAsLink = false }) => {
 
   if (!dish) return null;
 
-  const content1 = (
+  return (
     <>
-      <NavLink to={`/dish/${id}`}>{dish.name}</NavLink>
+      {nameAsLink ? (
+        <NavLink to={`/dish/${id}`}>{dish.name}</NavLink>
+      ) : (
+        dish.name
+      )}
       <DishCounter dishId={id} />
     </>
   );
-
-  const content2 = (
-    <>
-      {dish.name}
-      <DishCounter dishId={id} />
-    </>
-  );
-
-  return nameAsLink ? content1 : content2;
 };

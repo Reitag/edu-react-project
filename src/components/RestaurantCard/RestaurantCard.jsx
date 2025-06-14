@@ -1,6 +1,6 @@
-import { NavLink, Outlet } from "react-router";
+import { Outlet } from "react-router";
+import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
 import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
-import cn from "classnames";
 import styles from "./RestaurantCard.module.css";
 
 export const RestaurantCard = () => {
@@ -13,28 +13,12 @@ export const RestaurantCard = () => {
     <>
       <h1>{name}</h1>
       <div className={styles.sections}>
-        <NavLink
-          to="menu"
-          end
-          className={({ isActive }) =>
-            cn(styles.tabButton, {
-              [styles.tabButtonActive]: isActive,
-            })
-          }
-        >
+        <NavLinkWrapper to="menu" end styles={styles}>
           Меню
-        </NavLink>
-
-        <NavLink
-          to="reviews"
-          className={({ isActive }) =>
-            cn(styles.tabButton, {
-              [styles.tabButtonActive]: isActive,
-            })
-          }
-        >
+        </NavLinkWrapper>
+        <NavLinkWrapper to="reviews" styles={styles}>
           Отзывы
-        </NavLink>
+        </NavLinkWrapper>
       </div>
       <Outlet />
     </>

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
-import { NavLink } from "react-router";
-import cn from "classnames";
+import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
 import styles from "./RestaurantTabs.module.css";
 
 export const RestaurantTab = ({ restaurantId }) => {
@@ -12,15 +11,8 @@ export const RestaurantTab = ({ restaurantId }) => {
   if (!restaurant) return null;
 
   return (
-    <NavLink
-      to={restaurant.id}
-      className={({ isActive }) =>
-        cn(styles.tabButton, {
-          [styles.tabButtonActive]: isActive,
-        })
-      }
-    >
+    <NavLinkWrapper to={restaurant.id} styles={styles}>
       {restaurant.name}
-    </NavLink>
+    </NavLinkWrapper>
   );
 };
