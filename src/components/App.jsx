@@ -1,8 +1,8 @@
 import { Layout } from "./Layout/Layout";
 import { HomePage } from "../pages/HomePage/HomePage";
-import { RestaurantPage } from "../pages/RestaurantPage/RestaurantPage";
+import { RestaurantsPage } from "../pages/RestaurantsPage/RestaurantsPage";
 import { DishPage } from "../pages/DishPage/DishPage";
-import { RestaurantCard } from "./RestaurantCard/RestaurantCard";
+import { RestaurantCardPage } from "../pages/RestaurantCardPage/RestaurantCardPage";
 import { RestaurantMenu } from "./RestaurantMenu/RestaurantMenu";
 import { RestaurantReviews } from "./RestaurantReviews/RestaurantReviews";
 import { ThemeContext } from "./ThemeContext/ThemeContext";
@@ -20,8 +20,8 @@ export const App = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-                <Route path="restaurants" element={<RestaurantPage />}>
-                  <Route path=":restaurantId" element={<RestaurantCard />}>
+                <Route path="restaurants" element={<RestaurantsPage />}>
+                  <Route path=":restaurantId" element={<RestaurantCardPage />}>
                     <Route index element={<Navigate to="menu" replace />} />
                     <Route path="menu" element={<RestaurantMenu />} />
                     <Route path="reviews" element={<RestaurantReviews />} />
