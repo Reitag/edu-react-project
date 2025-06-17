@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { getDish, getDishes } from "./get-dishes.js";
+import { getDish, getDishByRestaurantId } from "./get-dishes.js";
 import { REQUEST_STATUS } from "../../../shared/constants/requestStatus.js";
 
 const entityAdapter = createEntityAdapter();
@@ -17,7 +17,7 @@ export const dishesSlice = createSlice({
       .addCase(getDish.fulfilled, (state, { payload }) => {
         entityAdapter.setOne(state, payload);
       })
-      .addCase(getDishes.fulfilled, (state, { payload }) => {
+      .addCase(getDishByRestaurantId.fulfilled, (state, { payload }) => {
         entityAdapter.setAll(state, payload);
       });
   },
