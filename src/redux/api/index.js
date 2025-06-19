@@ -4,7 +4,7 @@ import { URL } from "../../shared/constants/url.js";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: URL }),
-  tagTypes: ["Reviews"],
+  tagTypes: ["Reviews", "Users"],
   endpoints: (builder) => ({
     getReviewsByRestaurantId: builder.query({
       query: (restaurantId) => `reviews?restaurantId=${restaurantId}`,
@@ -24,7 +24,15 @@ export const api = createApi({
         { type: "Reviews", id: restaurantId },
       ],
     }),
+    getUsers: builder.query({
+      query: () => "users",
+      providesTags: ["Users"],
+    }),
   }),
 });
 
-export const { useGetReviewsByRestaurantIdQuery, useAddReviewMutation } = api;
+export const {
+  useGetReviewsByRestaurantIdQuery,
+  useAddReviewMutation,
+  useGetUsersQuery,
+} = api;

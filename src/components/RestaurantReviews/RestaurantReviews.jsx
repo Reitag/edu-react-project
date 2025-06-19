@@ -2,6 +2,7 @@ import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import { Review } from "./Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { useGetReviewsByRestaurantIdQuery } from "../../redux/api";
+import { useGetUsersQuery } from "../../redux/api";
 import { useAddReviewMutation } from "../../redux/api";
 import { useUserContext } from "../../hooks/useUserContext";
 import styles from "./RestaurantReviews.module.css";
@@ -10,10 +11,12 @@ export const RestaurantReviews = () => {
   const restaurant = useCurrentRestaurant();
   const ctx = useUserContext();
   const [addReviewMutation] = useAddReviewMutation();
+
   const { data: reviews = [], isLoading } = useGetReviewsByRestaurantIdQuery(
     restaurant?.id,
     { skip: !restaurant?.id }
   );
+  const { data: users = [] } = useGetUsersQuery();
 
   if (!restaurant || !ctx) return null;
 
@@ -38,7 +41,10 @@ export const RestaurantReviews = () => {
       <ul className={styles.reviewsList}>
         {reviews.map((review) => (
           <li key={review.id} className={styles.reviewsItem}>
-            <Review id={review.id} nameAsLink />
+            <Review
+              user={users.find((user) => user.id === review.userId)}
+              review={review}
+            />
           </li>
         ))}
       </ul>
