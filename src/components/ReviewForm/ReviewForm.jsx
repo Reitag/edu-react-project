@@ -3,14 +3,13 @@ import { ReviewRateCounter } from "../ReviewRateCounter/ReviewRateCounter";
 import { useUserContext } from "../../hooks/useUserContext";
 import styles from "./ReviewForm.module.css";
 
-export const ReviewForm = () => {
-  const { form, onUserNameChange, onReviewChange, onRatingChange, clear } =
-    useForm();
-
+export const ReviewForm = ({ onSubmitForm }) => {
+  const { form, onReviewChange, onRatingChange, clear } = useForm();
   const { user } = useUserContext();
+
   if (!user) return null;
 
-  const { userName, review, rating } = form;
+  const { review, rating } = form;
 
   return (
     <div className={styles.formContainer}>
@@ -20,14 +19,6 @@ export const ReviewForm = () => {
           event.preventDefault();
         }}
       >
-        <div className={styles.formGroup}>
-          <label htmlFor="userName">User name</label>
-          <input
-            id="userName"
-            value={userName}
-            onChange={(event) => onUserNameChange(event.target.value)}
-          />
-        </div>
         <div className={styles.formGroup}>
           <label htmlFor="review">Review</label>
           <input
@@ -42,6 +33,9 @@ export const ReviewForm = () => {
         </div>
         <button type="button" className={styles.clearButton} onClick={clear}>
           Clear
+        </button>
+        <button type="submit" onClick={() => onSubmitForm(form)}>
+          Submit
         </button>
       </form>
     </div>

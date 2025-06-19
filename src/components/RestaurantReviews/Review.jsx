@@ -12,7 +12,13 @@ export const Review = ({ id }) => {
 
   return (
     <div>
-      <strong>{user?.name ?? "Anonymous"}:</strong> {review.text}
+      <p>
+        <strong>{user?.name ?? "Anonymous"}:</strong> {review.text}
+      </p>
+      <p>
+        <strong>Raiting: </strong>
+        {review.rating}
+      </p>
     </div>
   );
 };
