@@ -1,18 +1,18 @@
 import { useSelector } from "react-redux";
-import { selectReviewById } from "../../redux/entities/reviews/slice";
 import { selectUserById } from "../../redux/entities/users/slice";
 
-export const Review = ({ id }) => {
-  const review = useSelector((state) => selectReviewById(state, id));
-  const user = useSelector((state) =>
-    review ? selectUserById(state, review.userId) : null
-  );
-
+export const Review = ({ review }) => {
+  const user = useSelector((state) => selectUserById(state, review.userId));
   if (!review) return null;
 
   return (
     <div>
-      <strong>{user?.name ?? "Anonymous"}:</strong> {review.text}
+      <p>
+        <strong>{user?.name ?? "Anonymous"}:</strong> {review.text}
+      </p>
+      <p>
+        <strong>Rating:</strong> {review.rating}
+      </p>
     </div>
   );
 };
