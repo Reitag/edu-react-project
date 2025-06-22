@@ -1,8 +1,14 @@
+"use client";
+
 import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
-import { useParams } from "react-router";
+import { useParams } from "next/navigation";
 
-export const RestaurantCardPage = () => {
-  const { restaurantId } = useParams();
+export const RestaurantCardPage = ({ children }) => {
+  const params = useParams();
 
-  return <RestaurantCard restaurantId={restaurantId} />;
+  return (
+    <RestaurantCard restaurantId={params.restaurantId}>
+      {children}
+    </RestaurantCard>
+  );
 };

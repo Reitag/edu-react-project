@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Context } from "../../hooks/useThemeContext";
 import "../../variables.css";

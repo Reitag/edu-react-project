@@ -1,3 +1,5 @@
+"use client";
+
 import { useUserContext } from "../../hooks/useUserContext";
 import styles from "./User.module.css";
 

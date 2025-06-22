@@ -1,3 +1,5 @@
+"use client";
+
 import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import { Dish } from "../Dish/Dish";
 import styles from "./RestaurantMenu.module.css";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import { Review } from "./Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
