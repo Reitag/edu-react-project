@@ -1,11 +1,8 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import { DishPage } from "../../../pages/DishPage/DishPage";
 
-const DishPageLayout = () => {
-  const params = useParams();
-  return <DishPage dishId={params.dishId} />;
+const DishPageLayout = async ({ params }) => {
+  const { dishId } = await params;
+  return <DishPage dishId={dishId} />;
 };
 
 export default DishPageLayout;

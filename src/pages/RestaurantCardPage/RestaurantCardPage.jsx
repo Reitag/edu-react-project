@@ -1,14 +1,9 @@
-"use client";
-
 import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
-import { useParams } from "next/navigation";
 
-export const RestaurantCardPage = ({ children }) => {
-  const params = useParams();
+export const RestaurantCardPage = async ({ children, params }) => {
+  const { restaurantId } = await params;
 
   return (
-    <RestaurantCard restaurantId={params.restaurantId}>
-      {children}
-    </RestaurantCard>
+    <RestaurantCard restaurantId={restaurantId}>{children}</RestaurantCard>
   );
 };

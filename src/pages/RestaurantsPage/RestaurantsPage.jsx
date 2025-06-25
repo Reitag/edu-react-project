@@ -1,3 +1,5 @@
+"use client";
+
 import { RestaurantTabs } from "../../components/RestaurantTabs/RestaurantTabs";
 import { RequestStatus } from "../../components/RequestStatus/RequestStatus";
 import { getRestaurants } from "../../redux/entities/restaurants/get-restaurants";

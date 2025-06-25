@@ -1,3 +1,5 @@
+"use client";
+
 import { RestaurantInfo } from "../RestaurantInfo/RestaurantInfo";
 import { RequestStatus } from "../RequestStatus/RequestStatus";
 import { LinkWrapper } from "./../LinkWrapper/LinkWrapper";
