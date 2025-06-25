@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
-import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
+import { LinkWrapper } from "./../LinkWrapper/LinkWrapper";
 import styles from "./RestaurantTabs.module.css";
 
 export const RestaurantTab = ({ restaurantId }) => {
@@ -11,8 +11,8 @@ export const RestaurantTab = ({ restaurantId }) => {
   if (!restaurant) return null;
 
   return (
-    <NavLinkWrapper to={restaurant.id} styles={styles}>
+    <LinkWrapper to={`/restaurants/${restaurant.id}`} styles={styles}>
       {restaurant.name}
-    </NavLinkWrapper>
+    </LinkWrapper>
   );
 };

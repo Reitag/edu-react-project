@@ -1,14 +1,15 @@
-import { Outlet } from "react-router";
+"use client";
+
 import { RestaurantInfo } from "../RestaurantInfo/RestaurantInfo";
 import { RequestStatus } from "../RequestStatus/RequestStatus";
-import { NavLinkWrapper } from "./../NavLinkWrapper/NavLinkWrapper";
+import { LinkWrapper } from "./../LinkWrapper/LinkWrapper";
 import { useRequest } from "../../hooks/useRequest";
 import { getDishByRestaurantId } from "../../redux/entities/dishes/get-dishes";
 import { getReviewsByRestaurantId } from "../../redux/entities/reviews/get-reviews";
 import { getUsers } from "../../redux/entities/users/get-users";
 import styles from "./RestaurantCard.module.css";
 
-export const RestaurantCard = ({ restaurantId }) => {
+export const RestaurantCard = ({ restaurantId, children }) => {
   const requestDishes = useRequest(getDishByRestaurantId, restaurantId);
   const requestReviews = useRequest(getReviewsByRestaurantId, restaurantId);
   const requestUsers = useRequest(getUsers);
@@ -18,14 +19,21 @@ export const RestaurantCard = ({ restaurantId }) => {
       <RequestStatus statuses={[requestDishes, requestReviews, requestUsers]}>
         <RestaurantInfo />
         <div className={styles.sections}>
-          <NavLinkWrapper to="menu" end styles={styles}>
+          <LinkWrapper
+            to={`/restaurants/${restaurantId}/menu`}
+            end
+            styles={styles}
+          >
             Меню
-          </NavLinkWrapper>
-          <NavLinkWrapper to="reviews" styles={styles}>
+          </LinkWrapper>
+          <LinkWrapper
+            to={`/restaurants/${restaurantId}/reviews`}
+            styles={styles}
+          >
             Отзывы
-          </NavLinkWrapper>
+          </LinkWrapper>
         </div>
-        <Outlet />
+        {children}
       </RequestStatus>
     </>
   );

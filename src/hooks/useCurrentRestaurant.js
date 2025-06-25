@@ -1,8 +1,10 @@
-import { useParams } from "react-router";
+import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../redux/entities/restaurants/slice";
 
 export const useCurrentRestaurant = () => {
-  const { restaurantId } = useParams();
-  return useSelector((state) => selectRestaurantById(state, restaurantId));
+  const params = useParams();
+  return useSelector((state) =>
+    selectRestaurantById(state, params.restaurantId)
+  );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { useSelector } from "react-redux";
 import { selectUserById } from "../../redux/entities/users/slice";
 

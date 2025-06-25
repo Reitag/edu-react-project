@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router";
 import { selectDishById } from "../../redux/entities/dishes/slice";
 import { DishCounter } from "../DishCounter/DishCounter";
 import styles from "./Dish.module.css";
@@ -12,9 +12,7 @@ export const Dish = ({ id, nameAsLink = false }) => {
 
   return (
     <div className={styles.dish}>
-      <h2>
-        {nameAsLink ? <NavLink to={`/dish/${id}`}>{name}</NavLink> : name}
-      </h2>
+      <h2>{nameAsLink ? <Link href={`/dish/${id}`}>{name}</Link> : name}</h2>
       <p>
         <strong>Price:</strong> ${price}
       </p>

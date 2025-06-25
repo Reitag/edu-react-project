@@ -1,8 +1,9 @@
 import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
-import { useParams } from "react-router";
 
-export const RestaurantCardPage = () => {
-  const { restaurantId } = useParams();
+export const RestaurantCardPage = async ({ children, params }) => {
+  const { restaurantId } = await params;
 
-  return <RestaurantCard restaurantId={restaurantId} />;
+  return (
+    <RestaurantCard restaurantId={restaurantId}>{children}</RestaurantCard>
+  );
 };

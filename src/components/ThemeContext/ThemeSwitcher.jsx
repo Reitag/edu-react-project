@@ -1,3 +1,5 @@
+"use client";
+
 import { useThemeContext } from "../../hooks/useThemeContext";
 import styles from "./Theme.module.css";
 
