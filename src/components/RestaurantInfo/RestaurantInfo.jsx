@@ -1,8 +1,6 @@
-import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import styles from "./RestaurantInfo.module.css";
 
-export const RestaurantInfo = () => {
-  const restaurant = useCurrentRestaurant();
+export const RestaurantInfo = ({ restaurant }) => {
   if (!restaurant) return null;
 
   const { name, description, img } = restaurant;

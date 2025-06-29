@@ -1,4 +1,4 @@
-import { DishPage } from "../../../pages/DishPage/DishPage";
+import { DishPage } from "../../../app-pages/DishPage/DishPage";
 
 const DishPageLayout = async ({ params }) => {
   const { dishId } = await params;
