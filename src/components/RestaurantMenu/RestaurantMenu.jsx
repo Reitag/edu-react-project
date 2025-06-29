@@ -1,11 +1,9 @@
-"use client";
-
-import { useCurrentRestaurant } from "../../hooks/useCurrentRestaurant";
 import { Dish } from "../Dish/Dish";
+import { getRestaurantById } from "../../services/get-restaurant-by-id";
 import styles from "./RestaurantMenu.module.css";
 
-export const RestaurantMenu = () => {
-  const restaurant = useCurrentRestaurant();
+export const RestaurantMenu = async ({ restaurantId }) => {
+  const restaurant = await getRestaurantById(restaurantId);
   if (!restaurant) return null;
 
   const { menu } = restaurant;

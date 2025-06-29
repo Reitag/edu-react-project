@@ -1,18 +1,16 @@
-import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/entities/restaurants/slice";
 import { LinkWrapper } from "./../LinkWrapper/LinkWrapper";
 import styles from "./RestaurantTabs.module.css";
 
-export const RestaurantTab = ({ restaurantId }) => {
-  const restaurant = useSelector((state) =>
-    selectRestaurantById(state, restaurantId)
-  );
-
+export const RestaurantTab = ({ restaurant }) => {
   if (!restaurant) return null;
 
+  const { id } = restaurant;
+
   return (
-    <LinkWrapper to={`/restaurants/${restaurant.id}`} styles={styles}>
-      {restaurant.name}
-    </LinkWrapper>
+    <>
+      <LinkWrapper to={`/restaurants/${id}`} styles={styles}>
+        {restaurant.name}
+      </LinkWrapper>
+    </>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { useDishCounter } from "../../hooks/useDishCounter";
 import { Counter } from "../Counter/Counter";
 import { useUserContext } from "../../hooks/useUserContext";
