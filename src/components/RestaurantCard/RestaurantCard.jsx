@@ -3,7 +3,7 @@ import { LinkWrapper } from "./../LinkWrapper/LinkWrapper";
 import styles from "./RestaurantCard.module.css";
 
 export const RestaurantCard = ({ restaurant, children }) => {
-  console.log(restaurant);
+  if (!restaurant) return null;
 
   const { id } = restaurant;
 
@@ -17,8 +17,8 @@ export const RestaurantCard = ({ restaurant, children }) => {
         <LinkWrapper to={`/restaurants/${id}/reviews`} styles={styles}>
           Отзывы
         </LinkWrapper>
-        {children}
       </div>
+      <div>{children}</div>
     </>
   );
 };

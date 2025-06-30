@@ -1,3 +1,14 @@
-import { RestaurantMenuLayout } from "../../../../layouts/menu";
+import { RestaurantMenu } from "../../../../components/RestaurantMenu/RestaurantMenu";
+import { Suspense } from "react";
 
-export default RestaurantMenuLayout;
+const Page = async ({ params }) => {
+  const { restaurantId } = await params;
+
+  return (
+    <Suspense fallback={<div>loading menu...</div>}>
+      <RestaurantMenu restaurantId={restaurantId} />
+    </Suspense>
+  );
+};
+
+export default Page;

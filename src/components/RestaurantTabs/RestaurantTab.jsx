@@ -8,7 +8,7 @@ export const RestaurantTab = ({ restaurant }) => {
 
   return (
     <>
-      <LinkWrapper to={`/restaurants/${id}`} styles={styles}>
+      <LinkWrapper to={`/restaurants/${id}/menu`} styles={styles}>
         {restaurant.name}
       </LinkWrapper>
     </>

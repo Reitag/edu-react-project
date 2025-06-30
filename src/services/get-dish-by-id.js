@@ -1,7 +1,10 @@
 import { URL } from "../shared/constants/url";
 
-export const getDishes = async () => {
-  const response = await fetch(`${URL}dishes`);
+export const getDishById = async (dishId) => {
+  const response = await fetch(`${URL}dish/${dishId}`, {
+    cache: "force-cache",
+    next: {},
+  });
 
   if (!response.ok) {
     return { error: response.status, data: null };

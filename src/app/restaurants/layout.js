@@ -1,3 +1,7 @@
-import { RestaurantsPageLayout } from "../../layouts/restaurants";
+import { RestaurantsPage } from "../../app-pages/RestaurantsPage/RestaurantsPage";
 
-export default RestaurantsPageLayout;
+const Layout = ({ children }) => {
+  return <RestaurantsPage>{children}</RestaurantsPage>;
+};
+
+export default Layout;

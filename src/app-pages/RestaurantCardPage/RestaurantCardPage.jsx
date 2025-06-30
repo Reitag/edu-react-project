@@ -2,7 +2,7 @@ import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
 import { getRestaurantById } from "../../services/get-restaurant-by-id";
 import { notFound } from "next/navigation";
 
-export const RestaurantCardPage = async ({ restaurantId }) => {
+export const RestaurantCardPage = async ({ restaurantId, children }) => {
   const { error, data } = await getRestaurantById(restaurantId);
 
   if (error) {
@@ -13,5 +13,5 @@ export const RestaurantCardPage = async ({ restaurantId }) => {
     return notFound();
   }
 
-  return <RestaurantCard restaurant={data} />;
+  return <RestaurantCard restaurant={data}>{children}</RestaurantCard>;
 };

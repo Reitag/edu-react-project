@@ -1,12 +1,20 @@
 import { Dish } from "../Dish/Dish";
 import { getRestaurantById } from "../../services/get-restaurant-by-id";
+import { notFound } from "next/navigation";
 import styles from "./RestaurantMenu.module.css";
 
 export const RestaurantMenu = async ({ restaurantId }) => {
-  const restaurant = await getRestaurantById(restaurantId);
-  if (!restaurant) return null;
+  const { error, data } = await getRestaurantById(restaurantId);
 
-  const { menu } = restaurant;
+  if (error) {
+    throw new Error(error);
+  }
+
+  if (!data) {
+    return notFound();
+  }
+
+  const { menu } = data;
 
   return (
     <>
