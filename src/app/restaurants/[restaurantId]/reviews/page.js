@@ -2,7 +2,6 @@ import { RestaurantReviewsContainer } from "../../../../components/RestaurantRev
 import { UsersContext } from "../../../../components/UsersContext/UsersContext";
 import { getUsers } from "../../../../services/get-users";
 import { getReviewsByRestaurantId } from "../../../../services/get-reviews-by-restaurant-id";
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 const Page = async ({ params }) => {
@@ -23,14 +22,9 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <Suspense fallback={<div>loading reviews...</div>}>
-      <UsersContext users={users}>
-        <RestaurantReviewsContainer
-          restaurantId={restaurantId}
-          reviews={data}
-        />
-      </UsersContext>
-    </Suspense>
+    <UsersContext users={users}>
+      <RestaurantReviewsContainer restaurantId={restaurantId} reviews={data} />
+    </UsersContext>
   );
 };
 

@@ -1,10 +1,10 @@
 import { Dish } from "../Dish/Dish";
-import { getRestaurantById } from "../../services/get-restaurant-by-id";
+import { getDishesByRestaurantId } from "../../services/get-dishes-by-restaurant-id";
 import { notFound } from "next/navigation";
 import styles from "./RestaurantMenu.module.css";
 
 export const RestaurantMenu = async ({ restaurantId }) => {
-  const { error, data } = await getRestaurantById(restaurantId);
+  const { error, data } = await getDishesByRestaurantId(restaurantId);
 
   if (error) {
     throw new Error(error);
@@ -14,15 +14,13 @@ export const RestaurantMenu = async ({ restaurantId }) => {
     return notFound();
   }
 
-  const { menu } = data;
-
   return (
     <>
       <h3>Меню</h3>
       <ul className={styles.menuList}>
-        {menu.map((id) => (
-          <li key={id} className={styles.menuItem}>
-            <Dish id={id} nameAsLink />
+        {data.map((dish) => (
+          <li key={dish.id} className={styles.menuItem}>
+            <Dish id={dish.id} nameAsLink />
           </li>
         ))}
       </ul>
