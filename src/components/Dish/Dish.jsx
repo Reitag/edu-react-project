@@ -1,14 +1,21 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../redux/entities/dishes/slice";
+import { getDishById } from "../../services/get-dish-by-id";
 import { DishCounter } from "../DishCounter/DishCounter";
+import { notFound } from "next/navigation";
 import styles from "./Dish.module.css";
 
-export const Dish = ({ id, nameAsLink = false }) => {
-  const dish = useSelector((state) => selectDishById(state, id));
-  if (!dish) return null;
+export const Dish = async ({ id, nameAsLink = false }) => {
+  const { error, data } = await getDishById(id);
 
-  const { ingredients, name, price } = dish;
+  if (error) {
+    throw new Error(error);
+  }
+
+  if (!data) {
+    return notFound();
+  }
+
+  const { name, price, ingredients } = data;
 
   return (
     <div className={styles.dish}>
